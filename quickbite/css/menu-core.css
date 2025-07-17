@@ -1,0 +1,555 @@
+/* Base Styles */
+:root {
+  /* Primary Colors */
+  --primary-color: #6F4E37; /* Coffee brown (default) */
+  --secondary-color: #C4A484; /* Light coffee */
+  --accent-color: #E5B367; /* Golden */
+  
+  /* Category-specific colors will override these */
+  --category-primary: var(--primary-color);
+  --category-secondary: var(--secondary-color);
+  --category-accent: var(--accent-color);
+  
+  /* Neutral Colors */
+  --dark-color: #3E2723;
+  --light-color: #F9F5F0;
+  --success-color: #4CAF50;
+  --danger-color: #F44336;
+  --warning-color: #FF9800;
+  --info-color: #2196F3;
+  
+  /* Typography */
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Playfair Display', serif;
+  
+  /* Effects */
+  --transition: all 0.3s ease;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+/* Category-specific color overrides */
+.coffee-main {
+  --category-primary: #6F4E37;
+  --category-secondary: #C4A484;
+  --category-accent: #E5B367;
+}
+
+.tea-main {
+  --category-primary: #4A6B3D;
+  --category-secondary: #8BA888;
+  --category-accent: #C8B273;
+}
+
+/* Add more category color schemes as needed */
+.bakery-main {
+  --category-primary: #8D6E63;
+  --category-secondary: #BCAAA4;
+  --category-accent: #D7CCC8;
+}
+
+/* Core Layout */
+.menu-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.menu-hero {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+              var(--hero-image) center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin-bottom: 3rem;
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+  animation: fadeIn 1s ease;
+}
+
+.menu-hero .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(var(--category-primary-rgb),0.7) 0%, rgba(var(--category-dark-rgb),0.9) 100%);
+  z-index: 1;
+}
+
+.menu-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.menu-hero .hero-title {
+  font-family: var(--font-secondary);
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  animation: slideUp 0.8s ease;
+}
+
+.menu-hero .hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  animation: slideUp 0.8s ease 0.2s forwards;
+  opacity: 0;
+}
+
+/* Category Tabs */
+.menu-categories {
+  margin-bottom: 3rem;
+}
+
+.menu-categories .category-tabs {
+  display: flex;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 50px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 1;
+  justify-content: center;
+  max-width: max-content;
+  margin: 0 auto;
+}
+
+.menu-categories .tab-btn {
+  border: none;
+  background: transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--dark-color);
+  cursor: pointer;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+  position: relative;
+  z-index: 2;
+}
+
+.menu-categories .tab-btn i {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.menu-categories .tab-btn.active {
+  color: white;
+}
+
+.menu-categories .tab-btn.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--category-primary);
+  border-radius: 50px;
+  z-index: -1;
+  box-shadow: var(--shadow-sm);
+}
+
+.menu-categories .tab-btn:not(.active):hover {
+  color: var(--category-primary);
+}
+
+/* Item Grid */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.menu-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.menu-card .card-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  z-index: 2;
+}
+
+/* Badge Types */
+.menu-card .card-badge.bestseller,
+.menu-card .card-badge.popular {
+  background: var(--category-accent);
+}
+
+.menu-card .card-badge.trending {
+  background: var(--danger-color);
+}
+
+.menu-card .card-badge.healthy {
+  background: var(--success-color);
+}
+
+.menu-card .card-badge.premium {
+  background: var(--info-color);
+}
+
+.menu-card .card-badge.relaxing {
+  background: #9B59B6;
+}
+
+.menu-card .card-image {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.menu-card .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.menu-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.menu-card .quick-view-btn {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.9);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--dark-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+.menu-card:hover .quick-view-btn {
+  opacity: 1;
+}
+
+.menu-card .quick-view-btn i {
+  margin-right: 0.5rem;
+}
+
+.menu-card .card-content {
+  padding: 1.5rem;
+}
+
+.menu-card .card-header {
+  margin-bottom: 1rem;
+}
+
+.menu-card .card-header h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-color);
+}
+
+.menu-card .rating {
+  display: flex;
+  align-items: center;
+  color: var(--category-accent);
+  font-weight: 500;
+}
+
+.menu-card .rating i {
+  margin-right: 0.3rem;
+}
+
+.menu-card .review-count {
+  font-size: 0.8rem;
+  color: #777;
+  margin-left: 0.5rem;
+}
+
+.menu-card .card-description {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  min-height: 40px;
+}
+
+.menu-card .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-card .price {
+  display: flex;
+  align-items: center;
+}
+
+.menu-card .current-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--category-primary);
+}
+
+.menu-card .original-price {
+  font-size: 0.9rem;
+  text-decoration: line-through;
+  color: #999;
+  margin-left: 0.5rem;
+}
+
+.menu-card .discount {
+  font-size: 0.8rem;
+  background: var(--success-color);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+}
+
+.menu-card .add-to-cart {
+  display: flex;
+  align-items: center;
+}
+
+.menu-card .quantity-selector {
+  display: flex;
+  align-items: center;
+  margin-right: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.menu-card .qty-btn {
+  border: none;
+  background: #f5f5f5;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.menu-card .qty-btn:hover {
+  background: #eee;
+}
+
+.menu-card .qty-input {
+  width: 40px;
+  text-align: center;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  -mozappearance: textfield;
+}
+
+.menu-card .qty-input::-webkit-outer-spin-button,
+.menu-card .qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.menu-card .add-cart-btn {
+  border: none;
+  background: var(--category-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.menu-card .add-cart-btn:hover {
+  background: var(--dark-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.menu-card .add-cart-btn i {
+  margin-right: 0.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-hero .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .menu-hero .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .menu-categories .category-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .menu-categories .tab-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-hero .hero-title {
+    font-size: 2rem;
+  }
+  
+  .menu-card .card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .menu-card .add-to-cart {
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: space-between;
+  }
+}
+
+/* Theme System */
+.dark-theme .menu-main {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+.dark-theme .menu-card,
+.dark-theme .category-tabs {
+  background-color: #2d2d2d;
+  color: #f0f0f0;
+}
+
+.dark-theme .card-header h3,
+.dark-theme .current-price {
+  color: #f0f0f0;
+}
+
+.dark-theme .card-description,
+.dark-theme .review-count {
+  color: #bbb;
+}
+
+.dark-theme .tab-btn {
+  color: #f0f0f0;
+}
+
+.dark-theme .tab-btn:not(.active):hover {
+  color: var(--category-accent);
+}
+
+.dark-theme .qty-input {
+  background-color: #2d2d2d;
+  color: #f0f0f0;
+}
+
+.minimal-theme .menu-card {
+  box-shadow: none;
+  border: 1px solid #eee;
+}
+
+.minimal-theme .menu-card:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.minimal-theme .category-tabs {
+  box-shadow: none;
+  background: transparent;
+}
+
+.minimal-theme .tab-btn.active::before {
+  background: #f0f0f0;
+  box-shadow: none;
+}
+
+.minimal-theme .tab-btn.active {
+  color: var(--category-primary);
+}
+
+.vibrant-theme .menu-hero {
+  background: linear-gradient(135deg, var(--category-accent) 0%, var(--category-primary) 100%);
+}
+
+.vibrant-theme .hero-overlay {
+  display: none;
+}
+
+/* Toast Notification */
+.toast-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--category-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.toast-message.show {
+  opacity: 1;
+}

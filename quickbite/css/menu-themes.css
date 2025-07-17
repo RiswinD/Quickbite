@@ -1,0 +1,74 @@
+/* Dark Theme */
+.dark-theme .coffee-main {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+.dark-theme .coffee-card,
+.dark-theme .category-tabs {
+  background-color: #2d2d2d;
+  color: #f0f0f0;
+}
+
+.dark-theme .card-header h3,
+.dark-theme .current-price {
+  color: #f0f0f0;
+}
+
+.dark-theme .card-description,
+.dark-theme .review-count {
+  color: #bbb;
+}
+
+.dark-theme .tab-btn {
+  color: #f0f0f0;
+}
+
+.dark-theme .tab-btn:not(.active):hover {
+  color: var(--accent-color);
+}
+
+.dark-theme .qty-input {
+  background-color: #2d2d2d;
+  color: #f0f0f0;
+}
+
+/* Minimal Theme */
+.minimal-theme .coffee-card {
+  box-shadow: none;
+  border: 1px solid #eee;
+}
+
+.minimal-theme .coffee-card:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.minimal-theme .category-tabs {
+  box-shadow: none;
+  background: transparent;
+}
+
+.minimal-theme .tab-btn.active::before {
+  background: #f0f0f0;
+  box-shadow: none;
+}
+
+.minimal-theme .tab-btn.active {
+  color: var(--primary-color);
+}
+
+/* Vibrant Theme */
+.vibrant-theme {
+  --primary-color: #E74C3C;
+  --secondary-color: #3498DB;
+  --accent-color: #F39C12;
+}
+
+.vibrant-theme .coffee-hero {
+  background: linear-gradient(135deg, #E74C3C 0%, #F39C12 100%);
+}
+
+.vibrant-theme .hero-overlay {
+  display: none;
+}
